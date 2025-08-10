@@ -1,0 +1,217 @@
+<!--
+Project: Static site that runs Python in-browser via Pyodide
+Files contained below:
+- index.html (this single file contains embedded CSS & JS)
+
+How to use:
+1) Copy the contents of this file into a new file named `index.html` in your repository root.
+2) In GitHub, enable Pages (Settings → Pages) with Branch = main and Folder = /root, then Save.
+3) After ~1 minute open the Pages URL: https://<your-username>.github.io/<repo-name>/
+
+Notes:
+- This will run Python **in the visitor’s browser** using Pyodide. No server-side Python needed.
+- Replace the placeholder Python in the code area with your actual `menu_app.py` code (or paste the part you want to run).
+- If your script uses libraries not included, you can use pyodide.loadPackage to install some packages. Large packages may not be available.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Integrix — Menu App (Run in browser)</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#10b981}
+    body{background:linear-gradient(180deg,#031029 0%,#071028 100%);color:#e6eef8;font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;padding:28px}
+    .wrap{max-width:980px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px}
+    h1{margin:0;font-size:20px}
+    p.lead{color:var(--muted);margin:6px 0 20px}
+    .grid{display:grid;grid-template-columns:1fr 420px;gap:18px}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 20px rgba(2,6,23,.5)}
+    textarea.code{width:100%;height:420px;background:#041127;color:#dff3ff;border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,.04);font-family:monospace;font-size:13px}
+    .controls{display:flex;gap:8px;margin-top:10px}
+    button{background:var(--accent);color:#062019;border:0;padding:10px 12px;border-radius:8px;font-weight:600;cursor:pointer}
+    button.secondary{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--muted)}
+    .output{height:300px;background:#010916;border-radius:8px;padding:12px;overflow:auto;font-family:monospace;color:#bfead6}
+    small{color:var(--muted)}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr;}.output{height:220px}.card{padding:12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div style="width:44px;height:44px;background:linear-gradient(135deg,#06b6d4,#10b981);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#021;">IG</div>
+      <div>
+        <h1>Integrix — Menu App (Run here)</h1>
+        <p class="lead">Run a small Python script directly in the browser using Pyodide. Paste your menu_app.py code on the left and click <strong>Run</strong>.</p>
+      </div>
+    </header>
+
+    <div class="grid" style="margin-top:18px">
+      <div class="card">
+        <label><small>Python code (paste your menu_app.py here)</small></label>
+        <textarea id="code" class="code"># Example placeholder Python — replace this with your menu_app.py
+
+import sys
+
+def main():
+    print('Welcome to Integrix menu app (browser edition)')
+    print('1. Say Hello')
+    print('2. Sum two numbers')
+    print('3. Exit')
+
+    while True:
+        choice = input('Enter choice: ')
+        if choice == '1':
+            print('Hello, Gyaneshwar!')
+        elif choice == '2':
+            a = input('a = ')
+            b = input('b = ')
+            try:
+                print('Sum =', int(a) + int(b))
+            except:
+                print('Invalid numbers')
+        elif choice == '3':
+            print('Goodbye')
+            break
+        else:
+            print('Unknown choice')
+
+if __name__ == '__main__':
+    main()
+</textarea>
+
+        <div class="controls">
+          <button id="run">Run</button>
+          <button id="reset" class="secondary">Reset example</button>
+          <button id="download" class="secondary">Download .py</button>
+        </div>
+
+        <p style="margin-top:12px"><small>Note: not all Python libraries are available in Pyodide. For heavy server-side apps use Streamlit or Replit.</small></p>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>Output / Console</strong><br><small>Interactive input appears below when required.</small></div>
+            <div id="status" style="color:var(--muted)">Pyodide: not loaded</div>
+          </div>
+          <div id="output" class="output"></div>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <input id="userinput" placeholder="Type input and press Enter" style="flex:1;padding:8px;border-radius:6px;background:#021226;border:1px solid rgba(255,255,255,.03);color:#dff3ff;font-family:monospace" />
+            <button id="send">Enter</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>How to publish</strong>
+          <ol style="color:var(--muted)">
+            <li>Save this file as <code>index.html</code> in your repo root.</li>
+            <li>Commit & Push to GitHub (or upload via web UI).</li>
+            <li>Settings → Pages → Branch: main, Folder: /root → Save.</li>
+            <li>Open the provided URL after a minute.</li>
+          </ol>
+          <p style="margin:6px 0"><small>Want the app to be hosted as a web app (server-side)? I can deploy to Streamlit Cloud or Replit instead — tell me which.</small></p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <small>Created for Gyaneshwar — Integrix</small>
+    </footer>
+  </div>
+
+  <!-- Pyodide loader -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+  <script>
+    const outputEl = document.getElementById('output');
+    const statusEl = document.getElementById('status');
+    const userInput = document.getElementById('userinput');
+    let pyodide = null;
+    let pyStdinQueue = [];
+
+    function logOut(s){ outputEl.innerText += s + '\n'; outputEl.scrollTop = outputEl.scrollHeight; }
+
+    async function loadPyodideAndPackages(){
+      statusEl.innerText = 'Loading Pyodide... (this can take a few seconds)';
+      pyodide = await loadPyodide({indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.23.4/full/'});
+      statusEl.innerText = 'Pyodide loaded';
+
+      // Provide a simple stdin implementation via a JS->Python bridge
+      pyodide.runPython(`
+import sys
+from js import pyStdin
+class JsStdin:
+    def readline(self):
+        return pyStdin.readline()
+sys.stdin = JsStdin()
+`);
+    }
+
+    // JS helper object exposed to Pyodide
+    window.pyStdin = {
+      readline: () => {
+        // return next queued input (or wait)
+        if(pyStdinQueue.length === 0) return '\n';
+        return pyStdinQueue.shift() + '\n';
+      }
+    };
+
+    document.getElementById('send').addEventListener('click', ()=>{
+      const v = userInput.value || '';
+      pyStdinQueue.push(v);
+      userInput.value = '';
+      logOut('> ' + v);
+    });
+
+    document.getElementById('userinput').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ document.getElementById('send').click(); }
+    });
+
+    document.getElementById('run').addEventListener('click', async ()=>{
+      if(!pyodide) await loadPyodideAndPackages();
+      outputEl.innerText = '';
+      const code = document.getElementById('code').value;
+      statusEl.innerText = 'Running script...';
+      try{
+        // redirect Python stdout/stderr to JS
+        pyodide.runPython(`
+import sys
+from js import console
+class JsWriter:
+    def write(self, s):
+        if s: __send_to_js(s)
+    def flush(self):
+        pass
+sys.stdout = JsWriter()
+sys.stderr = JsWriter()
+`);
+
+        // define a JS function that Python can call to append output
+        window.__send_to_js = (s) => { logOut(s); };
+
+        // Run code
+        await pyodide.runPythonAsync(code);
+        statusEl.innerText = 'Finished';
+      } catch(err){
+        logOut('Error: ' + err);
+        statusEl.innerText = 'Error';
+      }
+    });
+
+    document.getElementById('reset').addEventListener('click', ()=>{
+      location.reload();
+    });
+
+    document.getElementById('download').addEventListener('click', ()=>{
+      const blob = new Blob([document.getElementById('code').value], {type:'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'menu_app.py';
+      a.click();
+    });
+  </script>
+</body>
+</html>
