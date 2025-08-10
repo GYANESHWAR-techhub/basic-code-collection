@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beginner Python Projects - Gyaneshwar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #1e1e1e; color: white; }
+    h1 { text-align: center; color: #ffcc00; }
+    details { background: #2c2c2c; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+    summary { font-size: 1.1em; font-weight: bold; cursor: pointer; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 5px; overflow-x: auto; }
+</style>
+</head>
+<body>
+
+<h1>🧠 Beginner Python Projects - Gyaneshwar</h1>
+
+<p style="text-align:center;">A collection of 16 beginner Python programs</p>
+
+<details><summary>1. Hello World</summary>
+<pre><code class="language-python">print("Hello World")</code></pre>
+</details>
+
+<details><summary>2. Name Printing</summary>
+<pre><code class="language-python">name = input("Enter your name: ")
+print("Entered name is:", name)</code></pre>
+</details>
+
+<details><summary>3. Basic Calculator using if-else</summary>
+<pre><code class="language-python">num1 = float(input("Enter first number: "))
+op = input("Enter operator (+, -, *, /): ")
+num2 = float(input("Enter second number: "))
+
+if op == "+":
+    print("Result:", num1 + num2)
+elif op == "-":
+    print("Result:", num1 - num2)
+elif op == "*":
+    print("Result:", num1 * num2)
+elif op == "/":
+    if num2 != 0:
+        print("Result:", num1 / num2)
+    else:
+        print("Cannot divide by zero!")</code></pre>
+</details>
+
+<details><summary>4. Calculator by Mod Menu</summary>
+<pre><code class="language-python">a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+op = input("Choose operation: Addition, Subtraction, Multiplication, Division: ")
+
+if op.lower() == "addition":
+    print("Result:", a + b)
+elif op.lower() == "subtraction":
+    print("Result:", a - b)
+elif op.lower() == "multiplication":
+    print("Result:", a * b)
+elif op.lower() == "division":
+    if b != 0:
+        print("Result:", a / b)
+    else:
+        print("Cannot divide by zero!")</code></pre>
+</details>
+
+<details><summary>5. Palindrome Number Checker</summary>
+<pre><code class="language-python">num = int(input("Enter a number: "))
+if str(num) == str(num)[::-1]:
+    print(num, "is a palindrome number.")
+else:
+    print(num, "is not a palindrome number.")</code></pre>
+</details>
+
+<details><summary>6. Armstrong Number Checker</summary>
+<pre><code class="language-python">num = int(input("Enter a number: "))
+order = len(str(num))
+total = sum(int(d)**order for d in str(num))
+if total == num:
+    print(num, "is an Armstrong number.")
+else:
+    print(num, "is not an Armstrong number.")</code></pre>
+</details>
+
+<details><summary>7. Strong Number Checker</summary>
+<pre><code class="language-python">def factorial(n):
+    f = 1
+    for i in range(1, n+1):
+        f *= i
+    return f
+
+num = int(input("Enter a number: "))
+total = sum(factorial(int(d)) for d in str(num))
+if total == num:
+    print(num, "is a Strong number.")
+else:
+    print(num, "is not a Strong number.")</code></pre>
+</details>
+
+<details><summary>8. Square of a Number</summary>
+<pre><code class="language-python">num = float(input("Enter a number: "))
+print("Square of", num, "is", num**2)</code></pre>
+</details>
+
+<details><summary>9. Volume of Cylinder</summary>
+<pre><code class="language-python">def volume(radius, height):
+    return 3.1416 * radius * radius * height
+
+r = float(input("Enter radius: "))
+h = float(input("Enter height: "))
+print("Volume of the cylinder is:", volume(r, h))</code></pre>
+</details>
+
+<details><summary>10. Decimal to Binary Converter</summary>
+<pre><code class="language-python">num = int(input("Enter a decimal number: "))
+print("Binary:", bin(num)[2:])</code></pre>
+</details>
+
+<details><summary>11. Binary to Decimal Converter</summary>
+<pre><code class="language-python">binary = input("Enter a binary number: ")
+try:
+    print("Decimal:", int(binary, 2))
+except:
+    print("Invalid binary number")</code></pre>
+</details>
+
+<details><summary>12. Prime Number Checker</summary>
+<pre><code class="language-python">num = int(input("Enter a number: "))
+if num > 1:
+    for i in range(2, num):
+        if num % i == 0:
+            print(num, "is not a prime number.")
+            break
+    else:
+        print(num, "is a prime number.")
+else:
+    print(num, "is not a prime number.")</code></pre>
+</details>
+
+<details><summary>13. Even/Odd Checker</summary>
+<pre><code class="language-python">num = int(input("Enter a number: "))
+if num % 2 == 0:
+    print(num, "is even.")
+else:
+    print(num, "is odd.")</code></pre>
+</details>
+
+<details><summary>14. Factorial of a Number</summary>
+<pre><code class="language-python">num = int(input("Enter a number: "))
+fact = 1
+for i in range(1, num + 1):
+    fact *= i
+print("Factorial of", num, "is", fact)</code></pre>
+</details>
+
+<details><summary>15. Factors of a Number</summary>
+<pre><code class="language-python">num = int(input("Enter a number: "))
+factors = [str(i) for i in range(1, num+1) if num % i == 0]
+print("Factors:", ", ".join(factors))</code></pre>
+</details>
+
+<details><summary>16. Grade Generator</summary>
+<pre><code class="language-python">marks = int(input("Enter your marks (0-100): "))
+if marks >= 90:
+    print("Grade: A")
+elif marks >= 80:
+    print("Grade: B")
+elif marks >= 70:
+    print("Grade: C")
+elif marks >= 60:
+    print("Grade: D")
+else:
+    print("Grade: F")</code></pre>
+</details>
+
+</body>
+</html>
